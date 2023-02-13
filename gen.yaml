@@ -1,0 +1,4 @@
+go:
+    version: 0.22.0-beta
+    packagename: github.com/speakeasy-sdks/lago-go-sdk
+sdkclassname: lago
