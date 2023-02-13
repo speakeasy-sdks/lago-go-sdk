@@ -1,4 +1,10 @@
-# github.com/speakeasy-sdks/lago-go-sdk
+# Lago Go SDK
+
+<div align="center">
+   <p>The Open Source Metering and Usage Based Billing API.</p>
+   <ahref="https://github.com/speakeasy-sdks/lago-go-sdk/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/lago-go-sdk/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+   <a href="https://doc.getlago.com/docs/api/intro"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
