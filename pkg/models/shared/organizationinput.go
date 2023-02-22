@@ -12,7 +12,7 @@ type OrganizationInputOrganization struct {
 	State                *string                           `json:"state,omitempty"`
 	Timezone             *string                           `json:"timezone,omitempty"`
 	WebhookURL           *string                           `json:"webhook_url,omitempty"`
-	Zipode               *string                           `json:"zipode,omitempty"`
+	Zipcode              *string                           `json:"zipcode,omitempty"`
 }
 
 type OrganizationInput struct {

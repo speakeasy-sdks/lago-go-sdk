@@ -1,5 +1,9 @@
 package shared
 
+type CouponInputCouponAppliesTo struct {
+	PlanCodes []string `json:"plan_codes,omitempty"`
+}
+
 type CouponInputCouponCouponTypeEnum string
 
 const (
@@ -24,6 +28,7 @@ const (
 type CouponInputCoupon struct {
 	AmountCents       *int64                           `json:"amount_cents,omitempty"`
 	AmountCurrency    *string                          `json:"amount_currency,omitempty"`
+	AppliesTo         *CouponInputCouponAppliesTo      `json:"applies_to,omitempty"`
 	Code              *string                          `json:"code,omitempty"`
 	CouponType        *CouponInputCouponCouponTypeEnum `json:"coupon_type,omitempty"`
 	Expiration        *CouponInputCouponExpirationEnum `json:"expiration,omitempty"`

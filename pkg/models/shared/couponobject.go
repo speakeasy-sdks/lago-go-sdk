@@ -32,7 +32,9 @@ type CouponObject struct {
 	Frequency         *CouponObjectFrequencyEnum  `json:"frequency,omitempty"`
 	FrequencyDuration *int64                      `json:"frequency_duration,omitempty"`
 	LagoID            *string                     `json:"lago_id,omitempty"`
+	LimitedPlans      *bool                       `json:"limited_plans,omitempty"`
 	Name              *string                     `json:"name,omitempty"`
 	PercentageRate    *float64                    `json:"percentage_rate,omitempty"`
+	PlanCodes         []string                    `json:"plan_codes,omitempty"`
 	Reusable          *bool                       `json:"reusable,omitempty"`
 }

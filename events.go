@@ -55,7 +55,7 @@ func (s *events) FindEvent(ctx context.Context, request operations.FindEventRequ
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindEventResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *events) CreateBatchEvents(ctx context.Context, request operations.Creat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateBatchEventsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -204,7 +204,7 @@ func (s *events) CreateEvent(ctx context.Context, request operations.CreateEvent
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateEventResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

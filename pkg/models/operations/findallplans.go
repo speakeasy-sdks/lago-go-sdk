@@ -17,5 +17,5 @@ type FindAllPlansResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Plans                   *shared.Plans
-	StatusCode              int64
+	StatusCode              int
 }

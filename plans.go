@@ -55,7 +55,7 @@ func (s *plans) FindPlan(ctx context.Context, request operations.FindPlanRequest
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindPlanResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *plans) CreatePlan(ctx context.Context, request operations.CreatePlanReq
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreatePlanResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -213,7 +213,7 @@ func (s *plans) DestroyPlan(ctx context.Context, request operations.DestroyPlanR
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DestroyPlanResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -247,16 +247,6 @@ func (s *plans) DestroyPlan(ctx context.Context, request operations.DestroyPlanR
 
 			res.APIResponseNotFound = out
 		}
-	case httpRes.StatusCode == 405:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotAllowed
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotAllowed = out
-		}
 	}
 
 	return res, nil
@@ -273,7 +263,9 @@ func (s *plans) FindAllPlans(ctx context.Context, request operations.FindAllPlan
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -289,7 +281,7 @@ func (s *plans) FindAllPlans(ctx context.Context, request operations.FindAllPlan
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllPlansResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -353,7 +345,7 @@ func (s *plans) UpdatePlan(ctx context.Context, request operations.UpdatePlanReq
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdatePlanResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

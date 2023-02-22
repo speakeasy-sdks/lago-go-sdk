@@ -55,7 +55,7 @@ func (s *coupons) FindCoupon(ctx context.Context, request operations.FindCouponR
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindCouponResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *coupons) ApplyCoupon(ctx context.Context, request operations.ApplyCoupo
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ApplyCouponResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -223,7 +223,7 @@ func (s *coupons) CreateCoupon(ctx context.Context, request operations.CreateCou
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateCouponResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -297,7 +297,7 @@ func (s *coupons) DestroyCoupon(ctx context.Context, request operations.DestroyC
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DestroyCouponResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -331,16 +331,6 @@ func (s *coupons) DestroyCoupon(ctx context.Context, request operations.DestroyC
 
 			res.APIResponseNotFound = out
 		}
-	case httpRes.StatusCode == 405:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotAllowed
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotAllowed = out
-		}
 	}
 
 	return res, nil
@@ -357,7 +347,9 @@ func (s *coupons) FindAllAppliedCoupons(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -373,7 +365,7 @@ func (s *coupons) FindAllAppliedCoupons(ctx context.Context, request operations.
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllAppliedCouponsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -413,7 +405,9 @@ func (s *coupons) FindAllCoupons(ctx context.Context, request operations.FindAll
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -429,7 +423,7 @@ func (s *coupons) FindAllCoupons(ctx context.Context, request operations.FindAll
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllCouponsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -493,7 +487,7 @@ func (s *coupons) UpdateCoupon(ctx context.Context, request operations.UpdateCou
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateCouponResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

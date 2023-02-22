@@ -55,7 +55,7 @@ func (s *creditNotes) FindCreditNote(ctx context.Context, request operations.Fin
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindCreditNoteResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *creditNotes) CreateCreditNote(ctx context.Context, request operations.C
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateCreditNoteResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -203,7 +203,7 @@ func (s *creditNotes) DownloadCreditNote(ctx context.Context, request operations
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DownloadCreditNoteResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -253,7 +253,9 @@ func (s *creditNotes) FindAllCreditNotes(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -269,7 +271,7 @@ func (s *creditNotes) FindAllCreditNotes(ctx context.Context, request operations
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllCreditNotesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -333,7 +335,7 @@ func (s *creditNotes) UpdateCreditNote(ctx context.Context, request operations.U
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateCreditNoteResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -417,7 +419,7 @@ func (s *creditNotes) VoidCreditNote(ctx context.Context, request operations.Voi
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.VoidCreditNoteResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

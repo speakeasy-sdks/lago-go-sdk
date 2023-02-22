@@ -55,7 +55,7 @@ func (s *invoices) FindInvoice(ctx context.Context, request operations.FindInvoi
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindInvoiceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -119,7 +119,7 @@ func (s *invoices) DownloadInvoice(ctx context.Context, request operations.Downl
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DownloadInvoiceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -183,7 +183,7 @@ func (s *invoices) FinalizeInvoice(ctx context.Context, request operations.Final
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FinalizeInvoiceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -233,7 +233,9 @@ func (s *invoices) FindAllInvoices(ctx context.Context, request operations.FindA
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -249,7 +251,7 @@ func (s *invoices) FindAllInvoices(ctx context.Context, request operations.FindA
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllInvoicesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -303,7 +305,7 @@ func (s *invoices) RefreshInvoice(ctx context.Context, request operations.Refres
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.RefreshInvoiceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -367,7 +369,7 @@ func (s *invoices) RetryPayment(ctx context.Context, request operations.RetryPay
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.RetryPaymentResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -442,7 +444,7 @@ func (s *invoices) UpdateInvoice(ctx context.Context, request operations.UpdateI
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateInvoiceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

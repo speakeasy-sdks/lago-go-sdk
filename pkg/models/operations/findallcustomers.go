@@ -17,5 +17,5 @@ type FindAllCustomersResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Customers               *shared.Customers
-	StatusCode              int64
+	StatusCode              int
 }

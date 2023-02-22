@@ -13,10 +13,9 @@ type DestroyCouponRequest struct {
 }
 
 type DestroyCouponResponse struct {
-	APIResponseNotAllowed   *shared.APIResponseNotAllowed
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Coupon                  *shared.Coupon
-	StatusCode              int64
+	StatusCode              int
 }

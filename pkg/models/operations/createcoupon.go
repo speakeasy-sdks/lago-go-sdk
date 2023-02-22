@@ -14,5 +14,5 @@ type CreateCouponResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	Coupon                         *shared.Coupon
-	StatusCode                     int64
+	StatusCode                     int
 }

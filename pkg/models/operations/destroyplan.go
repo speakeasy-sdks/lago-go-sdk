@@ -13,10 +13,9 @@ type DestroyPlanRequest struct {
 }
 
 type DestroyPlanResponse struct {
-	APIResponseNotAllowed   *shared.APIResponseNotAllowed
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Plan                    *shared.Plan
-	StatusCode              int64
+	StatusCode              int
 }

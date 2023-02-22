@@ -55,7 +55,7 @@ func (s *addOns) FindAddOn(ctx context.Context, request operations.FindAddOnRequ
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAddOnResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *addOns) ApplyAddOn(ctx context.Context, request operations.ApplyAddOnRe
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ApplyAddOnResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -223,7 +223,7 @@ func (s *addOns) CreateAddOn(ctx context.Context, request operations.CreateAddOn
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateAddOnResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -297,7 +297,7 @@ func (s *addOns) DestroyAddOn(ctx context.Context, request operations.DestroyAdd
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DestroyAddOnResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -331,16 +331,6 @@ func (s *addOns) DestroyAddOn(ctx context.Context, request operations.DestroyAdd
 
 			res.APIResponseNotFound = out
 		}
-	case httpRes.StatusCode == 405:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotAllowed
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotAllowed = out
-		}
 	}
 
 	return res, nil
@@ -357,7 +347,9 @@ func (s *addOns) FindAllAddOns(ctx context.Context, request operations.FindAllAd
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -373,7 +365,7 @@ func (s *addOns) FindAllAddOns(ctx context.Context, request operations.FindAllAd
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllAddOnsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -437,7 +429,7 @@ func (s *addOns) UpdateAddOn(ctx context.Context, request operations.UpdateAddOn
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateAddOnResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

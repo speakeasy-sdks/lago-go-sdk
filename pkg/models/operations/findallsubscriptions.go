@@ -18,6 +18,6 @@ type FindAllSubscriptionsResponse struct {
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 	Subscriptions           *shared.Subscriptions
 }

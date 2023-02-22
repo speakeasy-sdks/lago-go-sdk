@@ -13,10 +13,9 @@ type DeleteCustomerRequest struct {
 }
 
 type DeleteCustomerResponse struct {
-	APIResponseNotAllowed   *shared.APIResponseNotAllowed
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Customer                *shared.Customer
-	StatusCode              int64
+	StatusCode              int
 }

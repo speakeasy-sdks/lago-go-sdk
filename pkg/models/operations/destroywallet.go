@@ -17,6 +17,6 @@ type DestroyWalletResponse struct {
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 	Wallet                  *shared.Wallet
 }

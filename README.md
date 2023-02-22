@@ -103,6 +103,7 @@ func main() {
 * `FindCustomer` - Find customer by external ID
 * `FindCustomerCurrentUsage` - Find customer current usage
 * `CreateCustomer` - Create a customer
+* `DeleteAppliedCoupon` - Delete customer's appplied coupon
 * `FindAllCustomers` - Find customers
 
 ### Events

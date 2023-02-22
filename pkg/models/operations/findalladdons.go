@@ -17,5 +17,5 @@ type FindAllAddOnsResponse struct {
 	AddOns                  *shared.AddOns
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 }

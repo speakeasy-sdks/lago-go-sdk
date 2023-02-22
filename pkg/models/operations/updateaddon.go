@@ -20,5 +20,5 @@ type UpdateAddOnResponse struct {
 	APIResponseUnauthorized        *shared.APIResponseUnauthorized
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
-	StatusCode                     int64
+	StatusCode                     int
 }

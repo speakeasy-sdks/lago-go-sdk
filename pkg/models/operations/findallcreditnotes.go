@@ -18,5 +18,5 @@ type FindAllCreditNotesResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	CreditNotes             *shared.CreditNotes
-	StatusCode              int64
+	StatusCode              int
 }

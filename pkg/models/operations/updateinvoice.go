@@ -20,5 +20,5 @@ type UpdateInvoiceResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	Invoice                        *shared.Invoice
-	StatusCode                     int64
+	StatusCode                     int
 }

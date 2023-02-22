@@ -12,6 +12,17 @@ wallets.go
 webhooks.go
 lago.go
 go.mod
+go.sum
+pkg/types/date.go
+pkg/utils/contenttype.go
+pkg/utils/form.go
+pkg/utils/headers.go
+pkg/utils/pathparams.go
+pkg/utils/queryparams.go
+pkg/utils/requestbody.go
+pkg/utils/retries.go
+pkg/utils/security.go
+pkg/utils/utils.go
 pkg/models/operations/findaddon.go
 pkg/models/operations/applyaddon.go
 pkg/models/operations/createaddon.go
@@ -41,6 +52,7 @@ pkg/models/operations/deletecustomer.go
 pkg/models/operations/findcustomer.go
 pkg/models/operations/findcustomercurrentusage.go
 pkg/models/operations/createcustomer.go
+pkg/models/operations/deleteappliedcoupon.go
 pkg/models/operations/findallcustomers.go
 pkg/models/operations/findevent.go
 pkg/models/operations/createbatchevents.go
@@ -80,7 +92,6 @@ pkg/models/shared/apiresponseunprocessableentity.go
 pkg/models/shared/apiresponsebadrequest.go
 pkg/models/shared/appliedaddoninput.go
 pkg/models/shared/addoninput.go
-pkg/models/shared/apiresponsenotallowed.go
 pkg/models/shared/addons.go
 pkg/models/shared/billablemetric.go
 pkg/models/shared/billablemetricobject.go
@@ -105,6 +116,7 @@ pkg/models/shared/customerobject.go
 pkg/models/shared/creditnoteinput.go
 pkg/models/shared/creditnotes.go
 pkg/models/shared/creditnoteupdateinput.go
+pkg/models/shared/apiresponsenotallowed.go
 pkg/models/shared/customer.go
 pkg/models/shared/customerusage.go
 pkg/models/shared/customerusageobject.go
