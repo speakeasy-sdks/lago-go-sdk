@@ -20,6 +20,7 @@ go get github.com/speakeasy-sdks/lago-go-sdk
 package main
 
 import (
+    "context"
     "log"
     "github.com/speakeasy-sdks/lago-go-sdk"
     "github.com/speakeasy-sdks/lago-go-sdk/pkg/models/shared"
@@ -33,7 +34,7 @@ func main() {
                 BearerAuth: shared.SchemeBearerAuth{
                     Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
                 },
-            }
+            },
         ),
     }
 
@@ -44,7 +45,8 @@ func main() {
             Code: "unde",
         },
     }
-    
+
+    ctx := context.Background()
     res, err := s.AddOns.FindAddOn(ctx, req)
     if err != nil {
         log.Fatal(err)
@@ -53,6 +55,7 @@ func main() {
     if res.AddOn != nil {
         // handle response
     }
+}
 ```
 <!-- End SDK Example Usage -->
 
