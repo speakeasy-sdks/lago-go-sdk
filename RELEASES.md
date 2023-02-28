@@ -39,3 +39,11 @@ Based on:
 - Speakeasy CLI 1.5.3 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.25.1] https://github.com/speakeasy-sdks/lago-go-sdk/releases/tag/v0.25.1 - ./
+
+## Version 0.25.2
+### Changes
+Based on:
+- OpenAPI Doc 0.23.0-beta https://raw.githubusercontent.com/getlago/lago-openapi/main/swagger.yaml
+- Speakeasy CLI 1.5.4 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.25.2] https://github.com/speakeasy-sdks/lago-go-sdk/releases/tag/v0.25.2 - ./
