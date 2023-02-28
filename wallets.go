@@ -55,7 +55,7 @@ func (s *wallets) FindWallet(ctx context.Context, request operations.FindWalletR
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindWalletResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -129,7 +129,7 @@ func (s *wallets) CreateWallet(ctx context.Context, request operations.CreateWal
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateWalletResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -213,7 +213,7 @@ func (s *wallets) CreateWalletTransaction(ctx context.Context, request operation
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateWalletTransactionResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -287,7 +287,7 @@ func (s *wallets) DestroyWallet(ctx context.Context, request operations.DestroyW
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DestroyWalletResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -347,7 +347,9 @@ func (s *wallets) FindAllWalletTransactions(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -363,7 +365,7 @@ func (s *wallets) FindAllWalletTransactions(ctx context.Context, request operati
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllWalletTransactionsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -413,7 +415,9 @@ func (s *wallets) FindAllWallets(ctx context.Context, request operations.FindAll
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -429,7 +433,7 @@ func (s *wallets) FindAllWallets(ctx context.Context, request operations.FindAll
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllWalletsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -493,7 +497,7 @@ func (s *wallets) UpdateWallet(ctx context.Context, request operations.UpdateWal
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateWalletResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

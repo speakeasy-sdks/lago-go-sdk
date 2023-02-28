@@ -17,5 +17,5 @@ type FindInvoiceResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Invoice                 *shared.Invoice
-	StatusCode              int64
+	StatusCode              int
 }

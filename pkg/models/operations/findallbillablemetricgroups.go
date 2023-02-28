@@ -22,5 +22,5 @@ type FindAllBillableMetricGroupsResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Groups                  *shared.Groups
-	StatusCode              int64
+	StatusCode              int
 }

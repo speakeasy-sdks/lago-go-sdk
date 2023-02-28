@@ -17,5 +17,5 @@ type FindAllCouponsResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Coupons                 *shared.Coupons
-	StatusCode              int64
+	StatusCode              int
 }

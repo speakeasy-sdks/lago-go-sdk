@@ -14,9 +14,8 @@ type DestroyAddOnRequest struct {
 
 type DestroyAddOnResponse struct {
 	AddOn                   *shared.AddOn
-	APIResponseNotAllowed   *shared.APIResponseNotAllowed
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 }

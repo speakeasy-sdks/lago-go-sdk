@@ -56,7 +56,7 @@ func (s *webhooks) FetchPublicKey(ctx context.Context) (*operations.FetchPublicK
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FetchPublicKeyResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

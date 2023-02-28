@@ -17,6 +17,6 @@ type FindAllWalletsRequest struct {
 type FindAllWalletsResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 	Wallets                 *shared.Wallets
 }

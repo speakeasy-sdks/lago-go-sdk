@@ -14,5 +14,5 @@ type UpdateOrganizationResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	Organization                   *shared.Organization
-	StatusCode                     int64
+	StatusCode                     int
 }

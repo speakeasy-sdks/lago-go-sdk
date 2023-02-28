@@ -14,5 +14,5 @@ type CreateCustomerResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	Customer                       *shared.Customer
-	StatusCode                     int64
+	StatusCode                     int
 }

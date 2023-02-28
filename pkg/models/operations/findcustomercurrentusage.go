@@ -22,5 +22,5 @@ type FindCustomerCurrentUsageResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	CustomerUsage           *shared.CustomerUsage
-	StatusCode              int64
+	StatusCode              int
 }

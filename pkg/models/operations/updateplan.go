@@ -20,5 +20,5 @@ type UpdatePlanResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	Plan                           *shared.Plan
-	StatusCode                     int64
+	StatusCode                     int
 }

@@ -17,7 +17,7 @@ type CustomerInputCustomer struct {
 	State                *string                `json:"state,omitempty"`
 	Timezone             *string                `json:"timezone,omitempty"`
 	URL                  *string                `json:"url,omitempty"`
-	Zipode               *string                `json:"zipode,omitempty"`
+	Zipcode              *string                `json:"zipcode,omitempty"`
 }
 
 type CustomerInput struct {

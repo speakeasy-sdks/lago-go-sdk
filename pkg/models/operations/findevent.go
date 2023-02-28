@@ -17,5 +17,5 @@ type FindEventResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
 	Event                   *shared.Event
-	StatusCode              int64
+	StatusCode              int
 }

@@ -20,5 +20,5 @@ type UpdateBillableMetricResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	BillableMetric                 *shared.BillableMetric
 	ContentType                    string
-	StatusCode                     int64
+	StatusCode                     int
 }

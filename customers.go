@@ -55,7 +55,7 @@ func (s *customers) DeleteCustomer(ctx context.Context, request operations.Delet
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteCustomerResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -89,16 +89,6 @@ func (s *customers) DeleteCustomer(ctx context.Context, request operations.Delet
 
 			res.APIResponseNotFound = out
 		}
-	case httpRes.StatusCode == 405:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotAllowed
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotAllowed = out
-		}
 	}
 
 	return res, nil
@@ -129,7 +119,7 @@ func (s *customers) FindCustomer(ctx context.Context, request operations.FindCus
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindCustomerResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -179,7 +169,9 @@ func (s *customers) FindCustomerCurrentUsage(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -195,7 +187,7 @@ func (s *customers) FindCustomerCurrentUsage(ctx context.Context, request operat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindCustomerCurrentUsageResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -269,7 +261,7 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateCustomerResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -318,6 +310,70 @@ func (s *customers) CreateCustomer(ctx context.Context, request operations.Creat
 	return res, nil
 }
 
+// DeleteAppliedCoupon - Delete customer's appplied coupon
+// Delete customer's appplied coupon
+func (s *customers) DeleteAppliedCoupon(ctx context.Context, request operations.DeleteAppliedCouponRequest) (*operations.DeleteAppliedCouponResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/applied_coupons/{applied_coupon_id}", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.DeleteAppliedCouponResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.AppliedCoupon
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.AppliedCoupon = out
+		}
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseUnauthorized
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseUnauthorized = out
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseNotFound
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseNotFound = out
+		}
+	}
+
+	return res, nil
+}
+
 // FindAllCustomers - Find customers
 // Find all customers in certain organisation
 func (s *customers) FindAllCustomers(ctx context.Context, request operations.FindAllCustomersRequest) (*operations.FindAllCustomersResponse, error) {
@@ -329,7 +385,9 @@ func (s *customers) FindAllCustomers(ctx context.Context, request operations.Fin
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -345,7 +403,7 @@ func (s *customers) FindAllCustomers(ctx context.Context, request operations.Fin
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindAllCustomersResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

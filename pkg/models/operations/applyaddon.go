@@ -15,5 +15,5 @@ type ApplyAddOnResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	AppliedAddOn                   *shared.AppliedAddOn
 	ContentType                    string
-	StatusCode                     int64
+	StatusCode                     int
 }

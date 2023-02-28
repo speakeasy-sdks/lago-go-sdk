@@ -17,5 +17,5 @@ type DestroyBillableMetricResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	BillableMetric          *shared.BillableMetric
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 }

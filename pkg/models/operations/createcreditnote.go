@@ -14,5 +14,5 @@ type CreateCreditNoteResponse struct {
 	APIResponseUnprocessableEntity *shared.APIResponseUnprocessableEntity
 	ContentType                    string
 	CreditNote                     *shared.CreditNote
-	StatusCode                     int64
+	StatusCode                     int
 }

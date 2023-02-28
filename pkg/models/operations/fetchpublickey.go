@@ -7,6 +7,6 @@ import (
 type FetchPublicKeyResponse struct {
 	APIResponseUnauthorized          *shared.APIResponseUnauthorized
 	ContentType                      string
-	StatusCode                       int64
+	StatusCode                       int
 	FetchPublicKey200TextPlainString *string
 }

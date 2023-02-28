@@ -17,5 +17,5 @@ type FindAllBillableMetricsResponse struct {
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	BillableMetrics         *shared.BillableMetrics
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 }

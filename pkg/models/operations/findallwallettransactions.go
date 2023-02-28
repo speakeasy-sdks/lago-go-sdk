@@ -24,6 +24,6 @@ type FindAllWalletTransactionsResponse struct {
 	APIResponseNotFound     *shared.APIResponseNotFound
 	APIResponseUnauthorized *shared.APIResponseUnauthorized
 	ContentType             string
-	StatusCode              int64
+	StatusCode              int
 	WalletTransactions      *shared.WalletTransactions
 }
